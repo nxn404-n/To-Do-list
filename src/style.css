@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.75);
   display: flex;
   flex-direction: column;
 }
@@ -38,7 +38,6 @@ form {
   font-size: 20px;
   color: #9c9c9c;
   padding: 10px;
-  size: 10px;
 }
 
 input {
