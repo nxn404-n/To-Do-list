@@ -65,7 +65,7 @@ class ToDo {
       this.render();
     });
 
-   list.addEventListener('click', (e) => {
+    list.addEventListener('click', (e) => {
       if (e.target.classList.contains('dots')) {
         const index = e.target.parentElement.getAttribute('data-index');
         this.removeTask(index);
