@@ -1,17 +1,42 @@
 import './style.css';
 
 // Get DOM elements
+const form = document.querySelector('form');
+const input = document.querySelector('input');
 const list = document.querySelector('ul');
 
-// Define a Todo class
-class Todo {
+// To-Do class
+class ToDo {
   constructor() {
-    this.tasks = [
-      { description: 'Do laundry', completed: false, index: 1 },
-      { description: 'Buy groceries', completed: false, index: 2 },
-      { description: 'Clean room', completed: false, index: 3 },
-      { description: 'Study for exam', completed: false, index: 4 },
-    ];
+    this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  }
+
+  addTask(taskDescription) {
+    const newTask = {
+      description: taskDescription,
+      completed: false,
+      index: this.tasks.length,
+    };
+
+    this.tasks.push(newTask);
+    this.updateIndex();
+    this.save();
+  }
+
+  removeTask(index) {
+    this.tasks.splice(index, 1);
+    this.updateIndex();
+    this.save();
+  }
+
+  updateIndex() {
+    this.tasks.forEach((task, index) => {
+      task.index = index;
+    });
+  }
+
+  save() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
   }
 
   render() {
@@ -32,11 +57,28 @@ class Todo {
     });
   }
 
+  bindEvents() {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.addTask(input.value);
+      input.value = '';
+      this.render();
+    });
+
+   list.addEventListener('click', (e) => {
+      if (e.target.classList.contains('dots')) {
+        const index = e.target.parentElement.getAttribute('data-index');
+        this.removeTask(index);
+        this.render();
+      }
+    });
+  }
+
   init() {
+    this.bindEvents();
     this.render();
   }
 }
 
-// Create a new Todo object
-const todo = new Todo();
-todo.init();
+const toDo = new ToDo();
+toDo.init();
