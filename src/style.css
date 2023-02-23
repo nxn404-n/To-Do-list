@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
 
+
 body {
   background-color: #f6f6f6;
   display: flex;
@@ -66,11 +67,12 @@ li {
   padding: 15px 10px;
   margin: 0;
   gap: 10px;
+  width: 200px;
 }
 
 .dots {
   position: fixed;
-  padding-left: 250px;
+  margin-left: 250px;
 }
 
 .clearAllCompleted {
