@@ -10,7 +10,7 @@ class ToDo {
     const newTask = {
       description: taskDescription,
       completed: false,
-      index: this.tasks.length > 0 ? this.tasks.length + 1 : 1
+      index: this.tasks.length > 0 ? this.tasks.length + 1 : 1,
     };
 
     this.tasks.push(newTask);
