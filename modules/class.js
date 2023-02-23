@@ -71,6 +71,7 @@ class ToDo {
       list.appendChild(li);
     });
   }
+  
   bindEvents() {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -86,6 +87,7 @@ class ToDo {
       }
     });
   }
+
   init() {
     this.bindEvents();
     this.render();
