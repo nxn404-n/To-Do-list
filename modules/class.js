@@ -71,7 +71,7 @@ class ToDo {
       list.appendChild(li);
     });
   }
-  
+
   bindEvents() {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -81,7 +81,7 @@ class ToDo {
     });
     list.addEventListener('click', (e) => {
       if (e.target.classList.contains('dots')) {
-        const index = e.target.parentElement.dataset.index;
+        const { index } = e.target.parentElement.dataset.index;
         this.removeTask(index);
         this.render();
       }
