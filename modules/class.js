@@ -44,7 +44,6 @@ class ToDo {
     this.tasks.forEach((task) => {
       const input = document.createElement('input');
       input.setAttribute('type', 'checkbox');
-        
       const description = document.createElement('span');
       description.innerHTML = task.description;
       description.contentEditable = true;
@@ -53,10 +52,7 @@ class ToDo {
         this.editTask(index, e.target.textContent);
         this.render();
       });
-        
       const li = document.createElement('li');
-      
-        
       const dots = document.createElement('div');
       dots.className = 'dots';
       dots.style.cursor = 'pointer';
@@ -68,7 +64,6 @@ class ToDo {
         this.removeTask(index);
         this.render();
       });
-        
       li.appendChild(input);
       li.appendChild(description);
       li.appendChild(dots);
@@ -88,23 +83,6 @@ class ToDo {
     list.addEventListener('click', (e) => {
       if (e.target.classList.contains('dots')) {
         const index = e.target.parentElement.dataset.index;
-        this.removeTask(index);
-        this.render();
-      }
-    });
-  }
-
-  bindEvents() {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.addTask(input.value);
-      input.value = '';
-      this.render();
-    });
-
-    list.addEventListener('click', (e) => {
-      if (e.target.classList.contains('dots')) {
-        const index = e.target.parentElement.getAttribute('data-index');
         this.removeTask(index);
         this.render();
       }
