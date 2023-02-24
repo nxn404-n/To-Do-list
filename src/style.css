@@ -70,7 +70,7 @@ li {
 
 .dots {
   position: fixed;
-  padding-left: 250px;
+  margin-left: 250px;
 }
 
 .clearAllCompleted {
