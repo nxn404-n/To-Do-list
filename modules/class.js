@@ -1,5 +1,6 @@
 import '../src/style.css';
 import { form, input, list } from './DOMelements.js';
+import { clearCompletedEvent } from './checkboxFunction.js';
 
 class ToDo {
   constructor() {
@@ -10,11 +11,9 @@ class ToDo {
     const newTask = {
       description: taskDescription,
       completed: false,
-      index: this.tasks.length > 0 ? this.tasks.length + 1 : 1,
+      index: this.updateIndex(),
     };
-
     this.tasks.push(newTask);
-    this.updateIndex();
     this.save();
   }
 
@@ -33,6 +32,7 @@ class ToDo {
     this.tasks.forEach((task, index) => {
       task.index = index + 1;
     });
+    return this.tasks.length;
   }
 
   save() {
@@ -44,6 +44,12 @@ class ToDo {
     this.tasks.forEach((task) => {
       const input = document.createElement('input');
       input.setAttribute('type', 'checkbox');
+      input.checked = task.completed; // new
+      input.addEventListener('change', (e) => { // new
+        const index = e.target.parentElement.getAttribute('data-index');
+        this.tasks[index].completed = e.target.checked;
+        this.save();
+      });
       const description = document.createElement('span');
       description.innerHTML = task.description;
       description.contentEditable = true;
@@ -60,16 +66,25 @@ class ToDo {
       dots.innerHTML = '<span class="material-symbols-outlined">delete</span>';
       dots.addEventListener('click', (e) => {
         e.stopPropagation();
-        const index = e.target.parentElement.getAttribute('data-index');
+        this.updateIndex();
+        const index = e.currentTarget.parentElement.getAttribute('data-index');
         this.removeTask(index);
         this.render();
       });
       li.appendChild(input);
       li.appendChild(description);
       li.appendChild(dots);
-      li.setAttribute('data-index', task.index);
+      li.setAttribute('data-index', task.index - 1);
+      li.classList.toggle('completed', task.completed); // new
       list.appendChild(li);
     });
+  }
+
+  clearCompleted() {
+    this.tasks = this.tasks.filter((task) => !task.completed);
+    this.updateIndex();
+    this.save();
+    this.render();
   }
 
   bindEvents() {
@@ -79,13 +94,8 @@ class ToDo {
       input.value = '';
       this.render();
     });
-    list.addEventListener('click', (e) => {
-      if (e.target.classList.contains('dots')) {
-        const { index } = e.target.parentElement.dataset.index;
-        this.removeTask(index);
-        this.render();
-      }
-    });
+
+    clearCompletedEvent.call(this);
   }
 
   init() {
