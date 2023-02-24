@@ -16,7 +16,6 @@ class ToDo {
     this.tasks.push(newTask);
     this.save();
   }
-  
 
   removeTask(index) {
     this.tasks.splice(index, 1);
@@ -80,13 +79,13 @@ class ToDo {
       list.appendChild(li);
     });
   }
-  
+
   clearCompleted() {
-    this.tasks = this.tasks.filter(task => !task.completed);
+    this.tasks = this.tasks.filter((task) => !task.completed);
     this.updateIndex();
     this.save();
     this.render();
-  };
+  }
 
   bindEvents() {
     form.addEventListener('submit', (e) => {

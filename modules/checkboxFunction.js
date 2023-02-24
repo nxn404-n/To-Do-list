@@ -1,6 +1,6 @@
-const clearCompletedButton = document.querySelector('.clearCompletedButton');
+export const clearCompletedButton = document.querySelector('.clearCompletedButton');
 export function clearCompletedEvent() {
-    clearCompletedButton.addEventListener('click', () => {
-      this.clearCompleted();
-    });
+  clearCompletedButton.addEventListener('click', () => {
+    this.clearCompleted();
+  });
 }
