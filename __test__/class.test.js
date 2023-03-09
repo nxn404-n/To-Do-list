@@ -1,4 +1,4 @@
-import ToDo from "../modules/class";
+import ToDo from '../modules/class.js';
 
 document.body.innerHTML = `
   <form>
