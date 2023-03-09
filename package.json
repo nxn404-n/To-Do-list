@@ -4,13 +4,16 @@
   "description": "<a name=\"readme-top\"></a>",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
     "build": "webpack",
     "start": "webpack serve --open"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nxn404-n/To-Do-list.git"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   },
   "keywords": [],
   "author": "",
@@ -20,8 +23,12 @@
   },
   "homepage": "https://github.com/nxn404-n/To-Do-list#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.21.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.21.2",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.5.0",
+    "jest-environment-jsdom": "^29.5.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",

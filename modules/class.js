@@ -1,4 +1,3 @@
-import '../src/style.css';
 import { form, input, list } from './DOMelements.js';
 import { clearCompletedEvent } from './checkboxFunction.js';
 
