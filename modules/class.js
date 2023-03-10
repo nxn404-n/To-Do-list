@@ -39,6 +39,7 @@ class ToDo {
   }
 
   render() {
+    if (!list) return;
     list.innerHTML = '';
     this.tasks.forEach((task) => {
       const input = document.createElement('input');

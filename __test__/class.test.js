@@ -30,4 +30,28 @@ describe('ToDo', () => {
     todo.removeTask(0);
     expect(todo.tasks.length).toBe(1);
   });
+
+  test('edit a task', () => {
+    todo.addTask('Task 1');
+    const index = 0;
+    const newDescription = 'Task 2';
+    todo.editTask(index, newDescription);
+    expect(todo.tasks[0].description).toBe('Task 2');
+  });
+
+  test('updating completed status', () => {
+    todo.addTask('Task 1');
+    todo.addTask('Task 2');
+    todo.tasks[0].completed = true;
+
+    expect(todo.tasks[0].completed).toBe(true);
+  });
+
+  test('clear all completed', () => {
+    todo.addTask('Task 1');
+    todo.addTask('Task 2');
+    todo.tasks[0].completed = true;
+    todo.clearCompleted();
+    expect(todo.tasks[0].description).toBe('Task 2');
+  });
 });
