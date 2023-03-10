@@ -46,6 +46,7 @@ describe('ToDo', () => {
 
     expect(todo.tasks[0].completed).toBe(true);
   });
+  
   test('clear all completed', () => {
     todo.addTask('Task 1');
     todo.addTask('Task 2');
@@ -53,6 +54,4 @@ describe('ToDo', () => {
     todo.clearCompleted();
     expect(todo.tasks[0].description).toBe('Task 2');
   })
-
-  
 });
